@@ -7,14 +7,16 @@ import java.io.InputStream;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.os.Environment;
+// import android.os.Environment;
 import android.util.Log;
 
 public class AssetUtil {
 	
 	public static boolean copyAsset(Context context, AssetManager am, boolean force) {
 		File newDir = getSDDir(context);
-		File sd = Environment.getExternalStorageDirectory();
+		// File sd = Environment.getExternalStorageDirectory();
+		File sd = context.getExternalFilesDir(null);
+        if (sd == null) sd = context.getFilesDir();
 		if (sd != null && sd.exists() && sd.isDirectory() && newDir != null && newDir.exists() && newDir.isDirectory()) {
 			File hpDir = new File(sd, ".hp48");
 			if (hpDir.exists()) {
